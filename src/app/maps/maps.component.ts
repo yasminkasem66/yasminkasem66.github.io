@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+
+
 declare const google: any;
 
 interface Marker {
@@ -8,6 +10,8 @@ lng: number;
 label?: string;
 draggable?: boolean;
 }
+
+
 @Component({
   selector: 'app-maps',
   templateUrl: './maps.component.html',
@@ -15,7 +19,11 @@ draggable?: boolean;
 })
 export class MapsComponent implements OnInit {
 
-  constructor() { }
+
+  constructor() {
+
+
+   }
 
   ngOnInit() {
 
@@ -121,5 +129,17 @@ export class MapsComponent implements OnInit {
     // To add the marker to the map, call setMap();
     marker.setMap(map);
   }
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

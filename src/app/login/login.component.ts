@@ -15,6 +15,8 @@ export class LoginComponent {
   // prd!: Product;
   // prd2!: Product;
 
+  fieldTextType: boolean;
+
 
   constructor(
     private fb: FormBuilder,
@@ -41,6 +43,10 @@ export class LoginComponent {
     this.authentacation.loginx(this.loginfrm.value)
   }
 
+
+toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
 
 
 }

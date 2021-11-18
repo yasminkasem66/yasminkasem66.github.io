@@ -18,6 +18,8 @@ import { EditproductComponent } from 'app/editproduct/editproduct.component';
 import { OrdersComponent } from 'app/orders/orders.component';
 import { UsersComponent } from 'app/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
+import {FileUploadModule} from 'ng2-file-upload';
+
 
 
 @NgModule({
@@ -33,6 +35,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
+    FileUploadModule
   ],
   declarations: [
     DashboardComponent,

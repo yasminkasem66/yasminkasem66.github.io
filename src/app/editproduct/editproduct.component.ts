@@ -13,6 +13,10 @@ export class EditproductComponent implements OnInit, OnChanges {
   id: string = "";
   prd1: any = {};
   prd2: any = {};
+      allprd:any={};
+        allCategory:any[]=[];
+  allCompany:any[]=[];
+
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -22,6 +26,35 @@ export class EditproductComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges): void {}
 
   ngOnInit(): void {
+    
+    // take all categories from getAllProduct
+     this.ProductsServiceApi.getAllProducts().subscribe(
+      (res) => {
+        this.allprd = res["products"];
+        this.allprd.filter(item=>{
+          if(this.allCategory.includes(item.category))
+          {
+            escape
+          }
+          else{
+            this.allCategory.push(item.category);
+            //console.log(" this.allCategory", this.allCategory);
+          }
+          if(this.allCompany.includes(item.company))
+          {
+            escape
+          }
+          else{
+            this.allCompany.push(item.company);
+            //console.log(" this.allCategory", this.allCategory);
+          }
+        })
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+
     // get ID From route
     this.activatedRoute.paramMap.subscribe((paramMap) => {
       this.id = paramMap.get("id");

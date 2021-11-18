@@ -1,7 +1,3 @@
-class ImageSnippet {
-  constructor(public src: string, public file: File) {}
-}
-
 
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
@@ -11,32 +7,71 @@ import { ProductsService } from "app/services/productsService/products.service";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 
+//
+import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
+import {saveAs} from 'file-saver';
+// import { FormBuilder, FormGroup } from "@angular/forms";
+
+
+
+
 @Component({
   selector: "app-add-product",
   templateUrl: "./add-product.component.html",
   styleUrls: ["./add-product.component.scss"],
 })
 export class AddProductComponent implements OnInit {
-  imgFile: string;
 
+
+
+  imgFile: string;
   prd: Iproduct;
   public selectedFile: any;
-  selectedFile1!: ImageSnippet;
   private httpOptions1 = {};
+   TcknfrmLocalStorage = localStorage
+    .getItem("token")
+    .slice(1, localStorage.getItem("token").length - 1);
+
+    //
+    prd2:any={};
+    selectedCategory:string='';
+  selectedCompany:string='';
+  allCategory:any[]=[];
+  allCompany:any[]=[];
+
+
+        //test
+        // uploader:FileUploader = new FileUploader({url:'http://localhost:5000/api/v1/products/uploadImageMttlr'});
+        uploader:FileUploader = new FileUploader({url:'http://localhost:5000/api/v1//products/uploadImage'});
+    attachmentList:any = [];
+    //test
+
 
   constructor(
     private ProductsServiceApi: ProductsService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+
+
   ) {
-    // _id: tempStamp,
-    // let tempStamp = Date.now() as number;
+
+
+
+
+    //test
+ this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
+            this.attachmentList.push(JSON.parse(response));
+        }
+//test
+
 
     this.httpOptions1 = {
       headers: new HttpHeaders({
-        "Content-Type": "image/jpeg",
-        authorization:
-          "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiamFzbWluIiwidXNlcklkIjoiNjE4YzBkZmZhZThhYzM2MTUyNjY4ZGZhIiwicm9sZSI6ImFkbWluIiwiaWF0IjoxNjM3MDgyODc2LCJleHAiOjE2MzcxNjkyNzZ9.UP-mV-02vipTWYmZeWtCh8ro2z0nK632nCNA4_-YGdE",
+    //       "Access-Control-Allow-Origin": "*",
+    // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
+        "Content-Type":"multipart/form-data",
+        authorization:`Bearer ${this.TcknfrmLocalStorage}`,
+
       }),
     };
 
@@ -46,20 +81,17 @@ export class AddProductComponent implements OnInit {
       description: " ",
       image: "",
       category: "",
-      company: [],
+      company:" ",
       // colors: [];
     };
   }
 
   AddProduct() {
-    // const prd: Product = {
-    //   id: this.id,
-    //   Name: this.Name,
-    //   Price: this.Price,
-    //   Quantity: this.Quantity,
-    //   imgURL: (this.imgURL = './assets/1(14).jpg'),
-    //   Categoryid: this.Categoryid,
-    // };
+    this.prd.category=this.selectedCategory;
+    this.prd.company=this.selectedCompany;
+    console.log("  this.prd.image",   this.prd.image);
+    
+
     this.ProductsServiceApi.addProduct(this.prd).subscribe(
       (res) => {
         return this.router.navigateByUrl("/table-list");
@@ -102,19 +134,20 @@ export class AddProductComponent implements OnInit {
 
   fileChange(event) {
     let fileList: FileList = event.target.files;
-    console.log(fileList);
+    console.log("fileList", fileList);
 
     if (fileList.length > 0) {
       let file: File = fileList[0];
+          console.log("file", file);
+          console.log("file", file.name);
+
       let formData: FormData = new FormData();
+      
       formData.append("uploadFile", file, file.name);
-      let headers = new Headers();
-      /** In Angular 5, including the header Content-Type can invalidate your request */
-      headers.append("Content-Type", "multipart/form-data");
-      headers.append("Accept", "application/json");
-      // let options = new RequestOptions({ headers: headers });
+            console.log("formData", formData);
+
       this.httpClient
-        .post(`localhost:5000/api/v1/products/uploadImage`, formData, this.httpOptions1)
+        .post(`http://localhost:5000/api/v1/products/uploadImageMttlr`, formData, this.httpOptions1)
         .pipe(map((res: any) => res.json()))
         .subscribe(
           (data) => console.log("success"),
@@ -154,5 +187,63 @@ export class AddProductComponent implements OnInit {
 
   // }
 
-  ngOnInit(): void {}
+
+
+
+  ngOnInit(): void {
+    // take all categories from getAllProduct
+    this.ProductsServiceApi.getAllProducts().subscribe(
+      (res) => {
+        this.prd2 = res["products"];
+        this.prd2.filter(item=>{
+          if(this.allCategory.includes(item.category))
+          {
+            escape
+          }else{
+            this.allCategory.push(item.category);
+          }
+          if(this.allCompany.includes(item.company))
+          {
+            escape;
+          }else{
+            this.allCompany.push(item.company);
+          }
+        })
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+ 
 }
+
+
+  //  form: FormGroup;
+  //    this.form = this.fb.group({
+  //     name: [''],
+  //     avatar: [null]
+  //   })
+  //     form: FormGroup,
+  //     public fb: FormBuilder,
+
+//   uploadFile(event) {
+//     const file = (event.target as HTMLInputElement).files[0];
+//     this.form.patchValue({
+//       avatar: file
+//     });
+//     this.form.get('avatar').updateValueAndValidity()
+//   }
+
+// submitForm() {
+//   var formData: any = new FormData();
+//   formData.append("name", this.form.get('name').value);
+//   formData.append("avatar", this.form.get('avatar').value);
+
+//   this.httpClient.post('http://localhost:5000/api/v1//products/uploadImage', formData).subscribe(
+//     (response) => console.log(response),
+//     (error) => console.log(error)
+//   )
+// }
+

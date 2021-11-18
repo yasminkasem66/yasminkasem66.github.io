@@ -5,7 +5,7 @@ export interface Iproduct {
   description?: string;
   image?: string;
   category?: string;
-  company?: [];
+  company?:string;
   colors?: [];
   featured?: boolean;
   freeShipping?: boolean;

@@ -25,3 +25,12 @@
 .col:last-child {
   margin-right: 0;
 }
+
+
+
+.fa-eye-slash:hover,
+.fa-eye:hover {
+  cursor: pointer;
+}
+
+

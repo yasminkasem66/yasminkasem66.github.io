@@ -18,6 +18,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { NotfoundComponent } from './notfound/notfound.component';
 
+import {FileUploadModule} from 'ng2-file-upload';
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
@@ -39,6 +41,7 @@ import { NotfoundComponent } from './notfound/notfound.component';
     MatRadioModule,
     MatCardModule,
     MatFormFieldModule,
+    FileUploadModule
   ],
   declarations: [AppComponent, AdminLayoutComponent, LoginComponent, NotfoundComponent],
   providers: [],
