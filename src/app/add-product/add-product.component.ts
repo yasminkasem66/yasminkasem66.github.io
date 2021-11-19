@@ -69,7 +69,7 @@ export class AddProductComponent implements OnInit {
       headers: new HttpHeaders({
     //       "Access-Control-Allow-Origin": "*",
     // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        "Content-Type":"multipart/form-data",
+        // "Content-Type":"multipart/form-data",
         authorization:`Bearer ${this.TcknfrmLocalStorage}`,
 
       }),
@@ -120,9 +120,9 @@ export class AddProductComponent implements OnInit {
 
   uploadfile(event) {
     this.selectedFile = event.target.files[0];
-    console.log("this.selectedFile", this.selectedFile);
-    console.log("event.target.files[0]", event.target.files[0]);
-    return this.ProductsServiceApi.upload(this.selectedFile).subscribe(
+    let formData: FormData = new FormData(); 
+    formData.append("image", this.selectedFile, this.selectedFile.name);
+    return this.ProductsServiceApi.upload(formData).subscribe(
       (res) => {
         console.log(res);
       },
@@ -133,7 +133,7 @@ export class AddProductComponent implements OnInit {
   }
 
   fileChange(event) {
-    let fileList: FileList = event.target.files;
+    let fileList= event.target.files;
     console.log("fileList", fileList);
 
     if (fileList.length > 0) {
@@ -143,14 +143,16 @@ export class AddProductComponent implements OnInit {
 
       let formData: FormData = new FormData();
       
-      formData.append("uploadFile", file, file.name);
-            console.log("formData", formData);
+      formData.append("image", event.target.files[0], event.target.files[0].name);
+         formData.forEach((value,key) => {
+      console.log("ttttt", key,value)
+    });
+  
 
       this.httpClient
-        .post(`http://localhost:5000/api/v1/products/uploadImageMttlr`, formData, this.httpOptions1)
-        .pipe(map((res: any) => res.json()))
+        .post(`http://localhost:5000/api/v1/products/uploadImage`, formData, this.httpOptions1)
         .subscribe(
-          (data) => console.log("success"),
+          (data) => console.log("success", data),
           (error) => console.log(error)
         );
     }

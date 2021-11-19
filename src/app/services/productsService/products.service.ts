@@ -26,7 +26,6 @@ export class ProductsService {
 
     this.httpOptions1 = {
       headers: new HttpHeaders({
-        "Content-Type": "image/jpeg",
         authorization: `Bearer ${this.TcknfrmLocalStorage}`,
       }),
     };
