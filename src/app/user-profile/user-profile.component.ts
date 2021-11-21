@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Adminlogin } from "app/Models/login/adminlogin";
+import { User } from "app/Models/user/user";
+import { ProductsService } from "app/services/productsService/products.service";
 import { UserService } from "app/services/user/user.service";
 
 @Component({
@@ -10,17 +12,35 @@ import { UserService } from "app/services/user/user.service";
 export class UserProfileComponent implements OnInit {
   admindata: any = {};
   allAdmins: any = {};
+  public selectedFile: any;
+  img: any = null;
+  user: User;
+  newuser: User;
+
   IDfrmLocalStorage = localStorage
     .getItem("userId")
     .slice(1, localStorage.getItem("userId").length - 1);
 
-  constructor(private userAPI: UserService) {
+  constructor(
+    private userAPI: UserService,
+    private ProductsServiceApi: ProductsService
+  ) {
     console.log("IDfrmLocalStorage", this.IDfrmLocalStorage);
 
-    // this.admindata = {
-    //   user: {name:'', userId:'',role:''},
-    //   token: " ,",
-    // };
+    this.user = {
+      name: "",
+      email: "",
+      password: "",
+      role: "",
+      image: "",
+    };
+    this.newuser = {
+      name: "",
+      email: "",
+      password: "",
+      role: "",
+      image: "",
+    };
   }
 
   ngOnInit() {
@@ -51,7 +71,49 @@ export class UserProfileComponent implements OnInit {
       (res) => {
         console.log("resadmins", res);
         this.allAdmins = res.users;
-        console.log("this.admindata", this.admindata);
+        console.log("this.allAdmins", this.allAdmins);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  UpdateUser() {
+    this.user.image = this.img;
+    this.userAPI.UpdateUser(this.user).subscribe(
+      (res) => {
+        console.log("UpdateUser", res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  CreateAdmin() {
+    this.newuser.image = this.img;
+    this.userAPI.CreateAdmin(this.newuser).subscribe(
+      (res) => {
+        console.log("CreateAdmin", res);
+                location.reload();
+
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  uploadfile(event) {
+    this.selectedFile = event.target.files[0];
+    let formData: FormData = new FormData();
+    formData.append("image", this.selectedFile, this.selectedFile.name);
+    return this.ProductsServiceApi.upload(formData).subscribe(
+      (res) => {
+        console.log(res);
+        this.img = res.image;
+        console.log("this.img,", this.img);
       },
       (err) => {
         console.log(err);

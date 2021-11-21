@@ -64,7 +64,7 @@ export class ProductsService {
 
   DeleteProduct(id: number): Observable<{}> {
     console.log("this.TcknfrmLocalStorage ", this.TcknfrmLocalStorage);
-    
+
     return this.httpClient.delete<Iproduct>(
       `${environment.APIURL}/products/${id}`,
       this.httpOptions
@@ -80,13 +80,12 @@ export class ProductsService {
   }
 
   upload(body: FormData): Observable<any> {
-        console.log("this.TcknfrmLocalStorage ", this.TcknfrmLocalStorage);
+    console.log("this.TcknfrmLocalStorage ", this.TcknfrmLocalStorage);
 
     console.log("body", body);
     const formData = new FormData();
     //  formData.append("image", body , body.name);
-    return this.httpClient.post(
-      ` ${environment.APIURL}/products/uploadImage`,
+    return this.httpClient.post(`${environment.APIURL}/products/uploadImage`,
       body,
       this.httpOptions1
     );

@@ -24,6 +24,7 @@ export class AuthenticationService {
     this.login(x).subscribe(
       (res) => {
         if (res.user.role == "admin") {
+          console.log("resLogin", res)
           localStorage.setItem("token", JSON.stringify(res.token));
           // document.cookie = `token=${res.token}`;
           localStorage.setItem("userId", JSON.stringify(res.user.userId));

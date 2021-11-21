@@ -8,7 +8,10 @@
             <p class="card-category">Complete your profile</p>
           </div>
           <div class="card-body">
-            <form>
+
+            <form (ngSubmit)="UpdateUser()" #userForm="ngForm">
+
+
               <!-- 
                           <div class="row">
                               <div class="col-md-6">
@@ -22,38 +25,76 @@
                                 </mat-form-field>
                               </div>
                           </div> -->
+
+
+              <!-- name -->
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Name" type="text">
+                    <input matInput placeholder="Name" #username="ngModel" type="text" [(ngModel)]=" user.name"
+                      name="Name">
                   </mat-form-field>
+                  <div [hidden]='username.valid || username.untouched' class=" fw-bold text-danger">
+                    User Name is
+                    required</div>
                 </div>
               </div>
+              <!-- email -->
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" type="text">
+                    <input matInput placeholder="Email" #useremail="ngModel" type="text" [(ngModel)]=" user.email"
+                      name="email">
                   </mat-form-field>
+                  <div [hidden]='useremail.valid || useremail.untouched' class=" fw-bold text-danger">
+                    User email is
+                    required</div>
                 </div>
               </div>
+              <!-- password -->
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Role" type="text">
+                    <input matInput placeholder="password" #userpassword="ngModel" type="text"
+                      [(ngModel)]=" user.password" name="password">
                   </mat-form-field>
+                  <div [hidden]='userpassword.valid || userpassword.untouched' class=" fw-bold text-danger">
+                    User password is
+                    required</div>
+                </div>
+              </div>
+              <!-- role -->
+              <!-- <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="role" #userrole="ngModel" type="text" [(ngModel)]=" user.role"
+                      name="role">
+                  </mat-form-field>
+                  <div [hidden]='userrole.valid || userrole.untouched' class=" fw-bold text-danger">
+                    User role is
+                    required</div>
+                </div>
+              </div> -->
+
+
+
+              <!-- image ="ngModel" [(ngModel)]=" prd.image" -->
+              <div class="row">
+                <div class="col-lg-12  mb-4">
+                  <input matInput accept="image/*" id=" image" #imageInput name="image"
+                    class="form-control form-control-lg fs-6 shadow-none " type="file" (change)="uploadfile($event)"
+                    placeholder="Enter Your  Product  image" required>
+                  <!-- <div [hidden]='imageInput.valid || imageInput.untouched' class="fw-bold text-danger">
+                    Product image is
+                    required</div> -->
                 </div>
               </div>
 
-              <div class="row">
-                <div class="col-md-12  mb-4">
-                  <!-- <mat-form-field class="example-full-width"> -->
-                  <input matInput accept="image/*" id=" image" name="image" class="form-control form-control-lg  "
-                    type="file" placeholder="" required>
-                  <!-- </mat-form-field> -->
-                </div>
-              </div>
+
 
               <button mat-raised-button type="submit" class="btn btn-warning pull-right">Update Profile</button>
+
+
               <div class="clearfix"></div>
             </form>
           </div>
@@ -63,7 +104,7 @@
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="javascript:void(0)">
-              <img src="https://via.placeholder.com/350x150">
+              <img src="{{admindata.image}}">
             </a>
           </div>
           <div class="card-body">
@@ -110,7 +151,7 @@
                 <tbody>
                   <tr *ngFor="let admin of   allAdmins; let i=index " class="fs-5 text-black">
                     <td>
-                      {{i}}
+                      {{i+1}}
                     </td>
                     <td>
                       {{admin.name}}
@@ -118,8 +159,8 @@
                     <td class="text-primary">
                       {{admin.role}}
                     </td>
-                    <td style="width:10%">
-                      <img src=" {{admin.email}}">
+                    <td style="width:6%">
+                      <img src="{{admin.image}}" class="w-100">
 
                     </td>
                     <td>
@@ -136,5 +177,110 @@
 
 
     </div>
+
+
+
+  </div>
+
+</div>
+
+
+<button type="button" class="btn  btn-warning m-5  " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Add Admin
+</button>
+<!-- <button mat-button color="accent">Accent</button>
+                                                                                        <i class="large material-icons">ac_unit</i> -->
+
+<!-- test modal -->
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+  aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog ">
+
+
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+
+      <div class="modal-body position-relative ">
+
+        <!--body  -->
+
+        <!-- name -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Name" #username="ngModel" type="text" [(ngModel)]=" newuser.name"
+                name="Name">
+            </mat-form-field>
+            <div [hidden]='username.valid || username.untouched' class=" fw-bold text-danger">
+              User Name is
+              required</div>
+          </div>
+        </div>
+        <!-- email -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Email" #useremail="ngModel" type="text" [(ngModel)]=" newuser.email"
+                name="email">
+            </mat-form-field>
+            <div [hidden]='useremail.valid || useremail.untouched' class=" fw-bold text-danger">
+              User email is
+              required</div>
+          </div>
+        </div>
+        <!-- password -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="password" #userpassword="ngModel" type="text" [(ngModel)]=" newuser.password"
+                name="password">
+            </mat-form-field>
+            <div [hidden]='userpassword.valid || userpassword.untouched' class=" fw-bold text-danger">
+              User password is
+              required</div>
+          </div>
+        </div>
+        <!-- role -->
+        <div class="row">
+          <div class="col-md-12">
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="role" #userrole="ngModel" type="text" [(ngModel)]=" newuser.role"
+                name="role">
+            </mat-form-field>
+            <div [hidden]='userrole.valid || userrole.untouched' class=" fw-bold text-danger">
+              User role is
+              required</div>
+          </div>
+        </div>
+
+
+
+        <!-- image ="ngModel" [(ngModel)]=" prd.image" -->
+        <div class="row">
+          <div class="col-lg-12  mb-4">
+            <input matInput accept="image/*" id=" image" #imageInput name="image"
+              class="form-control form-control-lg fs-6 shadow-none " type="file" (change)="uploadfile($event)"
+              placeholder="Enter Your  Product  image" >
+            <!-- <div [hidden]='imageInput.valid || imageInput.untouched' class="fw-bold text-danger">
+              Product image is
+              required</div> -->
+          </div>
+        </div>
+
+      </div>
+
+
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="CreateAdmin()">Add</button>
+      </div>
+    </div>
   </div>
 </div>
+<!-- test modal -->
