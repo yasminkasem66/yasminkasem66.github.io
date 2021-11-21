@@ -5,7 +5,6 @@ import { Adminlogin } from "app/Models/login/adminlogin";
 import { Iproduct } from "app/Models/product/iproduct";
 import { environment } from "environments/environment";
 import { BehaviorSubject, Observable } from "rxjs";
-import { first } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -26,7 +25,9 @@ export class AuthenticationService {
       (res) => {
         if (res.user.role == "admin") {
           localStorage.setItem("token", JSON.stringify(res.token));
+          // document.cookie = `token=${res.token}`;
           localStorage.setItem("userId", JSON.stringify(res.user.userId));
+          // document.cookie = `userId=${res.user.userId}`;
           this.router.navigate(["/dashboard"]);
           this.loggedStatusSubject.next(true);
         }
@@ -47,7 +48,9 @@ export class AuthenticationService {
         console.log(res);
         // localStorage.clear();
         localStorage.removeItem("token");
+        // document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
         localStorage.removeItem("userId");
+        // document.cookie = "userId=; expires=Thu, 01 Jan 1970 00:00:00 UTC;";
          this.router.navigate(["/login"]);
         this.loggedStatusSubject.next(false);
       },

@@ -63,12 +63,12 @@
                                 </div>
                             </div>
 
-                            <!-- image -->
+                            <!-- image ="ngModel" [(ngModel)]=" prd.image" -->
                             <div class="row">
                                 <div class="col-lg-12  mb-4">
-                                    <input accept="image/*"  id=" image" #imageInput="ngModel" [(ngModel)]=" prd.image" name="image"
+                                    <input accept="image/*"  id=" image" #imageInput name="image"
                                         class="form-control form-control-lg fs-6 shadow-none " type="file"
-                                                          (change)="fileChange($event)"
+                                                          (change)="uploadfile($event)"
 
                                         placeholder="Enter Your  Product  image" required>
                                     <div [hidden]='imageInput.valid || imageInput.untouched' class="fw-bold text-danger">
@@ -116,7 +116,7 @@
 
 <!-- kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk -->
 
-<!-- <div class="container-fluid">
+ <div class="container-fluid"> 
     <div class="row header-section">
         <span>Angular 4/5 Nodejs File Upload Download Sample</span>
     </div>

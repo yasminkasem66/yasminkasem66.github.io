@@ -17,7 +17,6 @@ export class UserService {
   constructor(private httpClient: HttpClient) {
     this.httpOptions = {
       headers: new HttpHeaders({
-        "Content-Type": "application/json",
         authorization: `Bearer ${this.TcknfrmLocalStorage}`,
       }),
     };
@@ -33,6 +32,8 @@ export class UserService {
 
   //admins
   getAllAdmins(): Observable<any> {
+    console.log("TcknfrmLocalStorage", this.TcknfrmLocalStorage);
+    
     return this.httpClient.get<any>(
       environment.APIURL + "/users/getAdmins",
       this.httpOptions

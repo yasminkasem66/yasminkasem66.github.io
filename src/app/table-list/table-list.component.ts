@@ -11,14 +11,18 @@ import { Router } from '@angular/router';
 })
 export class TableListComponent implements OnInit {
   //data
+  cp: number = 1;
+
   productList: any = {};
   prd: any = {};
   prd2: any = {};
   DeleteID: string = "kjgd";
 
   //constructor
-  constructor(private ProductsServiceApi: ProductsService,
-   private router: Router) {
+  constructor(
+    private ProductsServiceApi: ProductsService,
+    private router: Router
+  ) {
     // get all product
     this.ProductsServiceApi.getAllProducts().subscribe(
       (productList) => {
@@ -54,14 +58,13 @@ export class TableListComponent implements OnInit {
     this.ProductsServiceApi.DeleteProduct(DeleteProductID).subscribe(
       (res) => {
         console.log(res);
-        
+
         // return this.router.navigateByUrl("/table-list");
 
- 
-            // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-            // this.router.onSameUrlNavigation = "reload";
-            // this.router.navigate(["/table-list"]);
-       location.reload(); 
+        // this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        // this.router.onSameUrlNavigation = "reload";
+        // this.router.navigate(["/table-list"]);
+        location.reload();
       },
       (err) => {
         console.log(err);

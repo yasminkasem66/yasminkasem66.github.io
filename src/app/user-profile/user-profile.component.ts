@@ -26,7 +26,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit() {
     this.userAPI.showCurrentUser().subscribe(
       (res) => {
-        console.log(res.user, "kkk");
+        console.log(res, "kkk");
         this.admindata = res.user;
         console.log("this.admindata", this.admindata);
       },
@@ -51,7 +51,7 @@ export class UserProfileComponent implements OnInit {
       (res) => {
         console.log("resadmins", res);
         this.allAdmins = res.users;
-        // console.log("this.admindata", this.admindata);
+        console.log("this.admindata", this.admindata);
       },
       (err) => {
         console.log(err);

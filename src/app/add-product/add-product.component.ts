@@ -21,76 +21,59 @@ import {saveAs} from 'file-saver';
   styleUrls: ["./add-product.component.scss"],
 })
 export class AddProductComponent implements OnInit {
-
-
-
   imgFile: string;
   prd: Iproduct;
   public selectedFile: any;
-  private httpOptions1 = {};
-   TcknfrmLocalStorage = localStorage
+  TcknfrmLocalStorage = localStorage
     .getItem("token")
     .slice(1, localStorage.getItem("token").length - 1);
 
-    //
-    prd2:any={};
-    selectedCategory:string='';
-  selectedCompany:string='';
-  allCategory:any[]=[];
-  allCompany:any[]=[];
+  //
+  prd2: any = {};
+  selectedCategory: string = "";
+  selectedCompany: string = "";
+  allCategory: any[] = [];
+  allCompany: any[] = [];
+  img: any = null;
 
-
-        //test
-        // uploader:FileUploader = new FileUploader({url:'http://localhost:5000/api/v1/products/uploadImageMttlr'});
-        uploader:FileUploader = new FileUploader({url:'http://localhost:5000/api/v1//products/uploadImage'});
-    attachmentList:any = [];
-    //test
-
+  //test
+  uploader: FileUploader = new FileUploader({
+    url: "http://localhost:5000/api/v1//products/uploadImage",
+  });
+  attachmentList: any = [];
+  //test
 
   constructor(
     private ProductsServiceApi: ProductsService,
     private router: Router,
-    private httpClient: HttpClient,
-
-
+    private httpClient: HttpClient
   ) {
-
-
-
-
     //test
- this.uploader.onCompleteItem = (item:any, response:any , status:any, headers:any) => {
-            this.attachmentList.push(JSON.parse(response));
-        }
-//test
-
-
-    this.httpOptions1 = {
-      headers: new HttpHeaders({
-    //       "Access-Control-Allow-Origin": "*",
-    // "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,PATCH,OPTIONS",
-        // "Content-Type":"multipart/form-data",
-        authorization:`Bearer ${this.TcknfrmLocalStorage}`,
-
-      }),
+    this.uploader.onCompleteItem = (
+      item: any,
+      response: any,
+      status: any,
+      headers: any
+    ) => {
+      this.attachmentList.push(JSON.parse(response));
     };
-
+    //test
     this.prd = {
       name: "",
       price: null,
       description: " ",
-      image: "",
+      image: this.img,
       category: "",
-      company:" ",
+      company: " ",
       // colors: [];
     };
   }
 
   AddProduct() {
-    this.prd.category=this.selectedCategory;
-    this.prd.company=this.selectedCompany;
-    console.log("  this.prd.image",   this.prd.image);
-    
+    this.prd.category = this.selectedCategory;
+    this.prd.company = this.selectedCompany;
+    this.prd.image = this.img;
+    console.log("  this.prd.image", this.prd.image);
 
     this.ProductsServiceApi.addProduct(this.prd).subscribe(
       (res) => {
@@ -101,6 +84,58 @@ export class AddProductComponent implements OnInit {
       }
     );
   }
+
+  uploadfile(event) {
+    this.selectedFile = event.target.files[0];
+    let formData: FormData = new FormData();
+    formData.append("image", this.selectedFile, this.selectedFile.name);
+    return this.ProductsServiceApi.upload(formData).subscribe(
+      (res) => {
+        console.log(res);
+        this.img = res.image;
+        console.log("this.img,", this.img);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+  //1
+  // AddProduct() {
+  //   let formData: FormData = new FormData();
+  //   formData.append("image", this.selectedFile, this.selectedFile.name);
+  //   return this.ProductsServiceApi.upload(formData).subscribe(
+  //     (res) => {
+  //       console.log(res);
+  //       this.img = res.image;
+  //       console.log("this.img,", this.img);
+
+  //       this.prd.category = this.selectedCategory;
+  //       this.prd.company = this.selectedCompany;
+  //       this.prd.image = this.img;
+  //       console.log("  this.prd.image", this.prd.image);
+
+  //       this.ProductsServiceApi.addProduct(this.prd).subscribe(
+  //         (res) => {
+  //           return this.router.navigateByUrl("/table-list");
+  //         },
+  //         (err) => {
+  //           console.log(err);
+  //         }
+  //       );
+  //     },
+  //     (err) => {
+  //       console.log(err);
+  //     }
+  //   );
+  // }
+
+  // uploadfile(event) {
+  //   this.selectedFile = event.target.files[0];
+  // }
+
+  //1
 
   // onImageChange(e) {
   //   const reader = new FileReader();
@@ -118,107 +153,29 @@ export class AddProductComponent implements OnInit {
   //   }
   // }
 
-  uploadfile(event) {
-    this.selectedFile = event.target.files[0];
-    let formData: FormData = new FormData(); 
-    formData.append("image", this.selectedFile, this.selectedFile.name);
-    return this.ProductsServiceApi.upload(formData).subscribe(
-      (res) => {
-        console.log(res);
-      },
-      (err) => {
-        console.log(err);
-      }
-    );
-  }
-
-  fileChange(event) {
-    let fileList= event.target.files;
-    console.log("fileList", fileList);
-
-    if (fileList.length > 0) {
-      let file: File = fileList[0];
-          console.log("file", file);
-          console.log("file", file.name);
-
-      let formData: FormData = new FormData();
-      
-      formData.append("image", event.target.files[0], event.target.files[0].name);
-         formData.forEach((value,key) => {
-      console.log("ttttt", key,value)
-    });
-  
-
-      this.httpClient
-        .post(`http://localhost:5000/api/v1/products/uploadImage`, formData, this.httpOptions1)
-        .subscribe(
-          (data) => console.log("success", data),
-          (error) => console.log(error)
-        );
-    }
-  }
-
-  // processFile(imageInput: any) {
-  //   const file: File = imageInput.files[0];
-  //   const reader = new FileReader();
-
-  //   reader.addEventListener("load", (event: any) => {
-  //     this.selectedFile1 = new ImageSnippet(event.target.result, file);
-
-  //     this.ProductsServiceApi.upload(this.selectedFile1.file).subscribe(
-  //       (res) => {},
-  //       (err) => {}
-  //     );
-  //   });
-
-  //   reader.readAsDataURL(file);
-  // }
-
-  //   processFile2(file: File): void {
-  //     const formData = new FormData();
-  //     formData.append("image", file);
-
-  // if (file) {
-  //   this.ProductsServiceApi.upload(formData).subscribe(
-  //     (res) => {console.log(res);
-  //     },
-  //     (err) => {console.log(err);
-  //     }
-  //   );
-  // }
-
-  // }
-
-
-
-
   ngOnInit(): void {
     // take all categories from getAllProduct
     this.ProductsServiceApi.getAllProducts().subscribe(
       (res) => {
         this.prd2 = res["products"];
-        this.prd2.filter(item=>{
-          if(this.allCategory.includes(item.category))
-          {
-            escape
-          }else{
+        this.prd2.filter((item) => {
+          if (this.allCategory.includes(item.category)) {
+            escape;
+          } else {
             this.allCategory.push(item.category);
           }
-          if(this.allCompany.includes(item.company))
-          {
+          if (this.allCompany.includes(item.company)) {
             escape;
-          }else{
+          } else {
             this.allCompany.push(item.company);
           }
-        })
+        });
       },
       (err) => {
         console.log(err);
       }
     );
   }
-
- 
 }
 
 
@@ -249,3 +206,31 @@ export class AddProductComponent implements OnInit {
 //   )
 // }
 
+
+
+
+//  fileChange(event) {
+//     let fileList= event.target.files;
+//     console.log("fileList", fileList);
+
+//     if (fileList.length > 0) {
+//       let file: File = fileList[0];
+//           console.log("file", file);
+//           console.log("file", file.name);
+
+//       let formData: FormData = new FormData();
+      
+//       formData.append("image", event.target.files[0], event.target.files[0].name);
+//          formData.forEach((value,key) => {
+//       console.log("ttttt", key,value)
+//     });
+  
+
+//       this.httpClient
+//         .post(`http://localhost:5000/api/v1/products/uploadImage`, formData, this.httpOptions1)
+//         .subscribe(
+//           (data) => console.log("success", data),
+//           (error) => console.log(error)
+//         );
+//     }
+//   }

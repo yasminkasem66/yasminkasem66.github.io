@@ -18,7 +18,9 @@ import { EditproductComponent } from 'app/editproduct/editproduct.component';
 import { OrdersComponent } from 'app/orders/orders.component';
 import { UsersComponent } from 'app/users/users.component';
 import { HttpClientModule } from '@angular/common/http';
-import {FileUploadModule} from 'ng2-file-upload';
+import { FileUploadModule } from 'ng2-file-upload';
+import { NgxPaginationModule } from "ngx-pagination";
+
 
 
 
@@ -35,7 +37,8 @@ import {FileUploadModule} from 'ng2-file-upload';
     MatInputModule,
     MatSelectModule,
     MatTooltipModule,
-    FileUploadModule
+    FileUploadModule,
+    NgxPaginationModule,
   ],
   declarations: [
     DashboardComponent,

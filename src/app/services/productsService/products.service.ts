@@ -43,7 +43,8 @@ export class ProductsService {
 
   getProductByID(prdID: string): Observable<Iproduct> {
     return this.httpClient.get<Iproduct>(
-      environment.APIURL + "/products/" + prdID
+      environment.APIURL + "/products/" + prdID,
+      this.httpOptions
     );
   }
 
@@ -62,6 +63,8 @@ export class ProductsService {
   }
 
   DeleteProduct(id: number): Observable<{}> {
+    console.log("this.TcknfrmLocalStorage ", this.TcknfrmLocalStorage);
+    
     return this.httpClient.delete<Iproduct>(
       `${environment.APIURL}/products/${id}`,
       this.httpOptions
@@ -77,6 +80,8 @@ export class ProductsService {
   }
 
   upload(body: FormData): Observable<any> {
+        console.log("this.TcknfrmLocalStorage ", this.TcknfrmLocalStorage);
+
     console.log("body", body);
     const formData = new FormData();
     //  formData.append("image", body , body.name);

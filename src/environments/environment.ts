@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  APIURL: "http://localhost:5000/api/v1",
+  APIURL: "https://jumia-apis.herokuapp.com/api/v1",
 };
