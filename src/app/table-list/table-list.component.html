@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-md-12">
-            <form class="navbar-form" (ngSubmit)="Search('name',serachName
+            <form class="navbar-form" (ngSubmit)="Search('nameEn',serachName
             )" >
                 <div class="input-group no-border">
                     <!-- <label>Search by Name</label> -->
@@ -89,7 +89,7 @@
                                             {{i+1}}
                                         </td>
                                         <td>
-                                            {{product?.name}}
+                                            {{product?.nameEn}}
                                         </td>
                                         <td class="text-dark">
                                             {{product?.price}}$
@@ -98,7 +98,7 @@
                                             <img [src]="product?.image" alt="" class="w-50">
                                         </td>
                                         <td>
-                                            {{product?.category.name}}
+                                            {{product?.category}}
                                         </td>
                                         <td>
                                             {{product?.company}}

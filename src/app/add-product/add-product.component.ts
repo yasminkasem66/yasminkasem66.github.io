@@ -58,15 +58,28 @@ export class AddProductComponent implements OnInit {
       this.attachmentList.push(JSON.parse(response));
     };
     //test
-    this.prd = {
-      name: "",
-      price: null,
-      description: " ",
-      image: this.img,
-      category: "",
-      company: " ",
-      // colors: [];
-    };
+    this.prd={
+        nameAr: "",
+        nameEn: "",
+        price: null,
+        descriptionAr: "",
+        descriptionEn: "",
+        image: "",
+        category: "",
+        company:"",
+        quantity:null,
+        size:null,
+        color: "",
+    }
+    // this.prd = {
+    //   name: "",
+    //   price: null,
+    //   description: " ",
+    //   image: this.img,
+    //   category: "",
+    //   company: " ",
+    //   // colors: [];
+    // };
   }
 
   AddProduct() {

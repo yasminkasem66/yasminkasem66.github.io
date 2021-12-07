@@ -19,15 +19,26 @@
                         <form action="" (ngSubmit)="AddProduct()" #prdForm="ngForm">
 
                             <!-- name -->
-                            <div class="row">
-                                <div class="col-lg-12  mb-4">
-                                    <input id=" Name" #prdname="ngModel" [(ngModel)]=" prd.name" name="Name"
+                            <div class="row d-flex justify-content-between">
+                                <!-- English Name -->
+                                <div class="mb-4">
+                                    <input id=" Name" #prdnameEn="ngModel" [(ngModel)]=" prd.nameEn" name="Name"
                                         class="form-control form-control-lg fs-6 shadow-none " type="text"
-                                        placeholder="Enter Your  Product  Name" required>
-                                    <div [hidden]='prdname.valid || prdname.untouched' class=" fw-bold text-danger">
+                                        placeholder="Enter Your  Product  Name English" required>
+                                    <div [hidden]='prdnameEn.valid || prdnameEn.untouched' class=" fw-bold text-danger">
                                         Product Name is
                                         required</div>
                                 </div>
+                                <!-- Arabic Name -->
+                                <div class="mb-4">
+                                    <input id=" Name" #prdnameAr="ngModel" [(ngModel)]=" prd.nameAr" name="Name"
+                                        class="form-control form-control-lg fs-6 shadow-none " type="text" placeholder="Enter Your  Product  Name Arabic"
+                                        required>
+                                    <div [hidden]='prdnameAr.valid || prdnameAr.untouched' class=" fw-bold text-danger">
+                                        Product Name is
+                                        required</div>
+                                </div>
+                                
                             </div>
 
                             <!-- price -->
@@ -42,22 +53,65 @@
                                 </div>
                             </div>
 
+                            <!-- Quantity -->
+                            <div class="row">
+                                <div class="col-lg-12  mb-4">
+                                    <input id=" Price" [(ngModel)]=" prd.quantity" name=" Quantity" class="form-control form-control-lg fs-6  shadow-none"
+                                        type="number" placeholder="Enter Your  Product Quantity" #prdquantity="ngModel" required>
+                                    <div [hidden]='prdquantity.valid || prdquantity.untouched' class="fw-bold text-danger">
+                                        Product Quantity is
+                                         required</div>
+                                </div>
+                            </div>
+
+                            <!-- Size -->
+                            <div class="row">
+                                <div class="col-lg-12  mb-4">
+                                    <input id=" Price" [(ngModel)]=" prd.size" name=" Size"
+                                        class="form-control form-control-lg fs-6  shadow-none" type="number"
+                                        placeholder="Enter Your  Product Size" #prdsize="ngModel" required>
+                                    <div [hidden]='prdsize.valid || prdsize.untouched' class="fw-bold text-danger">
+                                        Product Size is
+                                        required</div>
+                                </div>
+                            </div>
+
                             <!-- dynamic company -->
-                            <label>Select Product Company</label>
+                            <!-- <label>Select Product Company</label>
                             <select class="form-select" name="company" [(ngModel)]="selectedCompany" id="comp" required>
                                 <option *ngFor="let company of allCompany" value="{{company}}">{{company}}</option>
-                            </select>
+                            </select> -->
+                            <!-- company Name -->
+                            <div class="row">
+                                <div class="mb-4">
+                                    <input id=" Name" #companyName="ngModel" [(ngModel)]=" prd.company" name="Name"
+                                        class="form-control form-control-lg fs-6 shadow-none " type="text"
+                                        placeholder="Enter Your  Product  Company Name" required>
+                                    <div [hidden]='companyName.valid || companyName.untouched' class=" fw-bold text-danger">
+                                        Company Name is
+                                        required</div>
+                                </div>
+                            </div>
 
 
                             <!--  description -->
                             <div class="row">
-                                <div class="col-lg-12  mb-4">
+                                <!-- English Description -->
+                                <div class="mb-4">
                                     <label>Description</label>
-                                    <textarea id=" " [(ngModel)]=" prd.description" name="description"
+                                    <textarea id=" " [(ngModel)]=" prd.descriptionEn" name="description"
                                         class="form-control form-control-lg fs-6  shadow-none"
-                                        #prddescription="ngModel"> </textarea>
-                                    <div [hidden]='prddescription.valid || prddescription.untouched'
+                                        #prddescriptionEn="ngModel"> </textarea>
+                                    <div [hidden]='prddescriptionEn.valid || prddescriptionEn.untouched'
                                         class="fw-bold text-danger"> Product
+                                        description is required</div>
+                                </div>
+                                <!-- Arabic Description -->
+                                <div class="mb-4">
+                                    <label>Description</label>
+                                    <textarea id=" " [(ngModel)]=" prd.descriptionAr" name="description"
+                                        class="form-control form-control-lg fs-6  shadow-none" #prddescriptionAr="ngModel"> </textarea>
+                                    <div [hidden]='prddescriptionAr.valid || prddescriptionAr.untouched' class="fw-bold text-danger"> Product
                                         description is required</div>
                                 </div>
                             </div>
@@ -86,12 +140,46 @@
                                 </div>
                             </div> -->
                             <!-- dynamic -->
-                            <label>Select Product Category</label>
+                            <!-- <label>Select Product Category</label>
                             <select class="form-select" name="category" [(ngModel)]="selectedCategory" id="cat"
                                 required>
                                 <option *ngFor="let categ of allCategory" value="{{categ}}">{{categ}}</option>
-                            </select>
+                            </select> -->
+                            <!-- company Name -->
+                            
+                            <!-- Catergory -->
+                            <div class="row">
+                                <div class="mb-4">
+                                    <input id=" Name" #categoryParentName="ngModel" [(ngModel)]=" prd.categoryparent" name="Name"
+                                        class="form-control form-control-lg fs-6 shadow-none " type="text"
+                                        placeholder="Enter Your  Product  Category" required>
+                                    <div [hidden]='categoryParentName.valid || categoryParentName.untouched' class=" fw-bold text-danger">
+                                        Product Category is
+                                        required</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="mb-4">
+                                    <input id=" Name" #categoryName="ngModel" [(ngModel)]=" prd.category" name="Name"
+                                        class="form-control form-control-lg fs-6 shadow-none " type="text"
+                                        placeholder="Enter Your  Product Sub Category" required>
+                                    <div [hidden]='categoryName.valid || categoryName.untouched' class=" fw-bold text-danger">
+                                        Product Sub Category is
+                                        required</div>
+                                </div>
+                            </div>
 
+                            <!-- Product Color -->
+                            <div class="row">
+                            <div class="mb-4">
+                            <input id=" Name" #prdColor="ngModel" [(ngModel)]=" prd.color" name="Color"
+                                class="form-control form-control-lg fs-6 shadow-none " type="text" placeholder="Enter Your  Product  Color"
+                                required>
+                            <div [hidden]='prdColor.valid || prdColor.untouched' class=" fw-bold text-danger">
+                                Product Color is
+                                required</div>
+                            </div>
+                            </div>
                             <div class="row">
                                 <div class="col-lg-12  mb-4">
                                     <button id="" class="btn btn-dark" type="submit" [disabled]="prdForm.invalid">Add
