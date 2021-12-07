@@ -29,9 +29,11 @@ const routes: Routes = [
             (m) => m.AdminLayoutModule
           ),
       },
-      // { path: "**", component: NotfoundComponent },
+     
     ],
+   
   },
+  { path: "**", component: NotfoundComponent },
 ];
 
 @NgModule({
