@@ -74,15 +74,24 @@ export class EditproductComponent implements OnInit, OnChanges {
       }
     );
 
-    this.prd = {
-      name: this.prd2.name,
+    // this.prd = {
+    //   name: this.prd2.name,
+    //   price: this.prd2.price,
+    //   description: this.prd2.description,
+    //   // image:'';
+    //   category: this.prd2.category,
+    //   company: this.prd2.company,
+    //   // colors: [];
+    // };
+    this.prd={
+      nameEn:this.prd2.nameEn,
+      nameAr:this.prd2.nameAr,
       price: this.prd2.price,
-      description: this.prd2.description,
-      // image:'';
-      category: this.prd2.category,
-      company: this.prd2.company,
-      // colors: [];
-    };
+      descriptionEn:this.prd2.description,
+      categoryparent: this.prd2.categoryparent,
+      category:this.prd2.category,
+      company:this.prd2.company
+    }
   }
 
   EditProduct(EditProduct: string, prd: Iproduct) {

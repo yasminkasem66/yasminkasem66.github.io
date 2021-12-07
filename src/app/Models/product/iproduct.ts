@@ -1,12 +1,17 @@
 export interface Iproduct {
-  _id?: number;
-  name?: string;
+    _id?: number;
+  nameAr?: string;
+  nameEn?: string;
   price?: number;
-  description?: string;
+  descriptionAr?: string;
+  descriptionEn?: string;
   image?: string;
   category?: string;
+  categoryparent?:string
   company?:string;
-  colors?: [];
+  quantity?:number;
+  size?:number;
+  color?: string;
   featured?: boolean;
   freeShipping?: boolean;
   inventory?: number;
