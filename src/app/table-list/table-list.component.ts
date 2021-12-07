@@ -12,6 +12,8 @@ import { Router } from '@angular/router';
 export class TableListComponent implements OnInit {
   //data
   cp: number = 1;
+  serachPrice: string = "";
+  serachName: string = "";
 
   productList: any = {};
   prd: any = {};
@@ -65,6 +67,22 @@ export class TableListComponent implements OnInit {
         // this.router.onSameUrlNavigation = "reload";
         // this.router.navigate(["/table-list"]);
         location.reload();
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+
+
+  Search(type: any, value:any) {
+    console.log("this.serach", value);
+    console.log("this.serach", typeof (value));
+    this.ProductsServiceApi.FilterProducts(type, value).subscribe(
+      (res: any) => {
+        console.log(res);
+        this.productList = res;
       },
       (err) => {
         console.log(err);

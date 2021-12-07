@@ -158,16 +158,20 @@ export class AddProductComponent implements OnInit {
     this.ProductsServiceApi.getAllProducts().subscribe(
       (res) => {
         this.prd2 = res["products"];
+        console.log(" this.prd2add", this.prd2);
+        
         this.prd2.filter((item) => {
-          if (this.allCategory.includes(item.category)) {
+                  console.log("item.category.name", item.category.name);
+
+          if (this.allCategory.includes(item.category.name)) {
             escape;
           } else {
-            this.allCategory.push(item.category);
+            this.allCategory.push(item.category.name);
           }
-          if (this.allCompany.includes(item.company)) {
+          if (this.allCompany.includes(item.company.name)) {
             escape;
           } else {
-            this.allCompany.push(item.company);
+            this.allCompany.push(item.company.name);
           }
         });
       },

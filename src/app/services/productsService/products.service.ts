@@ -21,6 +21,7 @@ export class ProductsService {
       headers: new HttpHeaders({
         "Content-Type": "application/json",
         authorization: `Bearer ${this.TcknfrmLocalStorage}`,
+        //  " X-HTTP-Method-Override": "patch, post,delete,put,get",
       }),
     };
 
@@ -38,6 +39,21 @@ export class ProductsService {
       this.httpOptions
     );
   }
+
+  // FilterName
+  FilterProducts(Type: any, search: any): Observable<Iproduct> {
+    return this.httpClient.get<Iproduct>(
+      `${environment.APIURL}/products?${Type}=${search}`,
+      this.httpOptions
+    );
+  }
+  // // FilterPrice
+  // FilterProductsPrice(search:any): Observable<Iproduct> {
+  //   return this.httpClient.get<Iproduct>(
+  //     `${environment.APIURL}/products?price=${search}`,
+  //     this.httpOptions
+  //   );
+  // }
 
   // getCountProducts() {}
 
@@ -63,7 +79,7 @@ export class ProductsService {
   }
 
   DeleteProduct(id: number): Observable<{}> {
-    console.log("this.TcknfrmLocalStorage ", this.TcknfrmLocalStorage);
+    console.log("this.TcknfrmLocalStorage", this.TcknfrmLocalStorage);
 
     return this.httpClient.delete<Iproduct>(
       `${environment.APIURL}/products/${id}`,
@@ -85,7 +101,8 @@ export class ProductsService {
     console.log("body", body);
     const formData = new FormData();
     //  formData.append("image", body , body.name);
-    return this.httpClient.post(`${environment.APIURL}/products/uploadImage`,
+    return this.httpClient.post(
+      `${environment.APIURL}/products/uploadImage`,
       body,
       this.httpOptions1
     );

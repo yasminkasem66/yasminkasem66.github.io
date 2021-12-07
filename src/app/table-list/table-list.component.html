@@ -1,5 +1,48 @@
 <div class="main-content">
     <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+            <form class="navbar-form" (ngSubmit)="Search('name',serachName
+            )" >
+                <div class="input-group no-border">
+                    <!-- <label>Search by Name</label> -->
+                    <input type="text" value="" class="form-control shadow-none" placeholder="Search..."  #prdname="ngModel" [(ngModel)]="serachName" name="search">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </form>
+            </div>
+
+            <!-- <div class="col-md-4">
+            <form class="navbar-form" (ngSubmit)="Search('price', serachPrice)" >
+                <div class="input-group no-border">
+                    <label>Search by Price</label>
+                    <input type="text" value="" class="form-control shadow-none" placeholder="Search..."  #prdname="ngModel" [(ngModel)]="serachPrice" name="search">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </form>
+            </div> -->
+            <!-- <div class="col-md-4">
+            <form class="navbar-form" (ngSubmit)="Search()" >
+                <div class="input-group no-border">
+                    <label>Search by Name</label>
+                    <input type="text" value="" class="form-control shadow-none" placeholder="Search..."  #prdname="ngModel" [(ngModel)]="serach" name="search">
+                    <button mat-raised-button type="submit" class="btn btn-white btn-round btn-just-icon">
+                        <i class="material-icons">search</i>
+                        <div class="ripple-container"></div>
+                    </button>
+                </div>
+            </form>
+            </div> -->
+        </div>
+
+
         <div class="row">
             <div class="col-md-12">
                 <div class="card">
@@ -55,7 +98,7 @@
                                             <img [src]="product?.image" alt="" class="w-50">
                                         </td>
                                         <td>
-                                            {{product?.category}}
+                                            {{product?.category.name}}
                                         </td>
                                         <td>
                                             {{product?.company}}
