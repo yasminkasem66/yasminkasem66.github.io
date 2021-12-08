@@ -66,6 +66,7 @@ export class AddProductComponent implements OnInit {
         descriptionEn: "",
         image: "",
         category: "",
+        categoryparent:"",
         company:"",
         quantity:null,
         size:null,
@@ -83,8 +84,8 @@ export class AddProductComponent implements OnInit {
   }
 
   AddProduct() {
-    this.prd.category = this.selectedCategory;
-    this.prd.company = this.selectedCompany;
+    // this.prd.category = this.selectedCategory;
+    // this.prd.company = this.selectedCompany;
     this.prd.image = this.img;
     console.log("  this.prd.image", this.prd.image);
 
