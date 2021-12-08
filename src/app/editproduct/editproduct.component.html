@@ -35,7 +35,7 @@
                                 <div class="mb-4">
                                     <input id=" Name" #prdnameEn="ngModel" [(ngModel)]=" prd.nameEn" name="Name"
                                         class="form-control form-control-lg fs-6 shadow-none " type="text"
-                                        placeholder="Enter Your  Product  Name English" value="{{this.prd2.nameEn}}" required>
+                                        placeholder="Enter Your  Product  Name English" value="{{this.prd2.nameEn}}" >
                                     <div [hidden]='prdnameEn.valid || prdnameEn.untouched' class=" fw-bold text-danger">
                                         Product Name is
                                         required</div>
@@ -44,7 +44,7 @@
                                 <div class="mb-4">
                                     <input id=" Name" #prdnameAr="ngModel" [(ngModel)]=" prd.nameAr" name="Name"
                                         class="form-control form-control-lg fs-6 shadow-none " type="text"
-                                        placeholder="Enter Your  Product  Name Arabic" value="{{this.prd2.nameAr}}" required>
+                                        placeholder="Enter Your  Product  Name Arabic" value="{{this.prd2.nameAr}}" >
                                     <div [hidden]='prdnameAr.valid || prdnameAr.untouched' class=" fw-bold text-danger">
                                         Product Name is
                                         required</div>
@@ -60,7 +60,7 @@
                                     <input id=" Price" [(ngModel)]=" prd.price" name=" Price"
                                         class="form-control form-control-lg fs-6 shadow-none " type="number"
                                         placeholder="Enter Your  Product Price" value="{{this.prd2.price}}"
-                                        #prdprice="ngModel" required>
+                                        #prdprice="ngModel" >
                                     <div [hidden]='prdprice.valid || prdprice.untouched' class="fw-bold text-danger">
                                         Product Price
                                         is required</div>
@@ -90,10 +90,11 @@
                             </select> -->
                             <!-- company Name -->
                             <div class="row">
+                                <label>Company</label>
                                 <div class="mb-4">
                                     <input id=" Name" #companyName="ngModel" [(ngModel)]=" prd.company" name="Name"
                                         class="form-control form-control-lg fs-6 shadow-none " type="text"
-                                        placeholder="Enter Your  Product  Company Name" value="{{this.prd2.company}}" required>
+                                        placeholder="Enter Your  Product  Company Name" value="{{this.prd2.company}}" >
                                     <div [hidden]='companyName.valid || companyName.untouched' class=" fw-bold text-danger">
                                         Company Name is
                                         required</div>
@@ -116,7 +117,7 @@
                             <div class="row">
                                 <!-- English Description -->
                                 <div class="mb-4">
-                                    <label>Description</label>
+                                    <label>English Description</label>
                                     <textarea id=" " [(ngModel)]=" prd.descriptionEn" name="description"
                                         class="form-control form-control-lg fs-6  shadow-none" #prddescriptionEn="ngModel" value="{{this.prd2.descriptionEn}}"> </textarea>
                                     <div [hidden]='prddescriptionEn.valid || prddescriptionEn.untouched' class="fw-bold text-danger"> Product
@@ -124,7 +125,7 @@
                                 </div>
                                 <!-- Arabic Description -->
                                 <div class="mb-4">
-                                    <label>Description</label>
+                                    <label>Arabic Description</label>
                                     <textarea id=" " [(ngModel)]=" prd.descriptionAr" name="description"
                                         class="form-control form-control-lg fs-6  shadow-none" #prddescriptionAr="ngModel" value="{{this.prd2.descriptionAr}}"> </textarea>
                                     <div [hidden]='prddescriptionAr.valid || prddescriptionAr.untouched' class="fw-bold text-danger"> Product
@@ -137,6 +138,7 @@
                             <!-- image -->
                             <div class="row">
                                 <div class="col-lg-12  mb-4">
+                                    <label>Enter Produc Image</label>
                                     <input accept="image/*" id=" image" #imageInput="ngModel" [(ngModel)]=" prd.image"
                                         name="image" class="form-control form-control-lg fs-6 shadow-none " type="file"
                                         placeholder="Enter Your  Product  image" required>
@@ -190,9 +192,10 @@ name="catID" id=" " [(ngModel)]=" prd.Categoryid">
 
                             <div class="row">
                                 <div class="mb-4">
+                                    <label>Category</label>
                                     <input id=" CategoryParent" #categoryparent="ngModel" [(ngModel)]=" prd.categoryparent"
                                         class="form-control form-control-lg fs-6 shadow-none " type="text"
-                                        placeholder="Enter Your  Product  Company Name" value="{{this.prd2.categoryparent}}" required>
+                                        placeholder="Enter Your  Product  Category Name" value="{{this.prd2.categoryparent}}" >
                                     <div [hidden]='categoryparent.valid || categoryparent.untouched' class=" fw-bold text-danger">
                                         Category Name is
                                         required</div>
@@ -200,9 +203,10 @@ name="catID" id=" " [(ngModel)]=" prd.Categoryid">
                             </div>
                             <div class="row">
                                 <div class="mb-4">
+                                    <label>Sub Category</label>
                                     <input id=" Category" #subCategory="ngModel" [(ngModel)]=" prd.category"
                                         class="form-control form-control-lg fs-6 shadow-none " type="text"
-                                        placeholder="Enter Your  Product  Company Name" value="{{this.prd2.category}}" required>
+                                        placeholder="Enter Your  Product  Sub Category Name" value="{{this.prd2.category}}" >
                                     <div [hidden]='subCategory.valid || subCategory.untouched' class=" fw-bold text-danger">
                                         Category Name is
                                         required</div>
