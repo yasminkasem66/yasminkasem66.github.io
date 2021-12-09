@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Router } from "@angular/router";
 import { Adminlogin } from "app/Models/login/adminlogin";
 import { User } from "app/Models/user/user";
 import { ProductsService } from "app/services/productsService/products.service";
@@ -23,7 +24,8 @@ export class UserProfileComponent implements OnInit {
 
   constructor(
     private userAPI: UserService,
-    private ProductsServiceApi: ProductsService
+    private ProductsServiceApi: ProductsService,
+    private router: Router 
   ) {
     console.log("IDfrmLocalStorage", this.IDfrmLocalStorage);
 
@@ -84,20 +86,27 @@ export class UserProfileComponent implements OnInit {
     this.userAPI.UpdateUser(this.user).subscribe(
       (res) => {
         console.log("UpdateUser", res);
+        localStorage.setItem("token", JSON.stringify(res.token));
+        // document.cookie = `token=${res.token}`;
+        localStorage.setItem("userId", JSON.stringify(res.user.userId));
+        // this.router.navigate(["/user-profile"]);
+        window.location.reload()
       },
       (err) => {
         console.log(err);
       }
     );
   }
+  // clearStorage() {
+  //  localStorage.clear()
+  // }
 
   CreateAdmin() {
     this.newuser.image = this.img;
     this.userAPI.CreateAdmin(this.newuser).subscribe(
       (res) => {
         console.log("CreateAdmin", res);
-                location.reload();
-
+        location.reload();
       },
       (err) => {
         console.log(err);
