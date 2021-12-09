@@ -3,7 +3,7 @@
 
         <div class="row">
             <div class="col-md-12">
-            <form class="navbar-form" (ngSubmit)="Search('nameEn',serachName
+            <form class="navbar-form" (ngSubmit)="Search('name',serachName
             )" >
                 <div class="input-group no-border">
                     <!-- <label>Search by Name</label> -->
@@ -89,7 +89,7 @@
                                             {{i+1}}
                                         </td>
                                         <td>
-                                            {{product?.nameEn}}
+                                            {{product?.name}}
                                         </td>
                                         <td class="text-dark">
                                             {{product?.price}}$
@@ -105,7 +105,7 @@
                                         </td>
                                         <td>
                                             <button type="button" class="btn  btn-warning  " data-bs-toggle="modal"
-                                                data-bs-target="#staticBackdrop" (click)="ProductDetails(product._id)">
+                                                data-bs-target="#staticBackdrop" (click)="ProductDetails(product.id)">
                                                 Details
                                             </button>
                                             <!-- <button mat-button color="accent">Accent</button>
@@ -145,7 +145,7 @@
                                                                             </span>
                                                                             <div class="name d-inline-block text-truncate"
                                                                                 style="max-width: 100px;">
-                                                                                {{prd2?.nameEn}}</div>
+                                                                                {{prd2?.name}}</div>
                                                                             <!-- price -->
 
                                                                             <div>
@@ -161,7 +161,7 @@
                                                                                 class="fs-6  fw-bold text-dark">description
                                                                                 : </span>
                                                                             <div class="description ">
-                                                                                {{prd2?.descriptionEn}}
+                                                                                {{prd2?.description}}
                                                                             </div>
                                                                         </div>
                                                                     </div>

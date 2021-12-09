@@ -38,6 +38,7 @@ export class TableListComponent implements OnInit {
   }
 
   ProductDetails(productID: string) {
+    console.log("productID",productID);
     this.ProductsServiceApi.getProductByID(productID).subscribe(
       (prd) => {
         console.log(prd);
