@@ -9,9 +9,9 @@ import * as Chartist from 'chartist';
 })
 export class DashboardComponent implements OnInit {
   productList: any = {};
-  numofProducts:number=0;
-  constructor(private ProductsServiceApi: ProductsService) { 
-      this.ProductsServiceApi.getAllProducts().subscribe(
+  numofProducts:number=0; 
+  constructor(private ProductsServiceApi: ProductsService) {
+    this.ProductsServiceApi.getAllProducts().subscribe(
       (productList) => {
         this.productList = productList;
         this.numofProducts=this.productList['products'].length;
@@ -20,7 +20,8 @@ export class DashboardComponent implements OnInit {
       (err) => {
         console.log(err);
       }
-    );
+    ); 
+
   }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
@@ -130,18 +131,20 @@ export class DashboardComponent implements OnInit {
       /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
       var datawebsiteViewsChart = {
-        labels: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
+        labels: ['Products', 'orders', 'users'],
         series: [
-          [542, 443, 320, 780, 553, 453, 326, 434, 568, 610, 756, 895]
+          [Number(this.numofProducts), 30, 40]
 
         ]
+       
       };
+      console.log(Number(this.numofProducts), 'hkkkkkkkkkkkkkkkkk')
       var optionswebsiteViewsChart = {
           axisX: {
-              showGrid: false
+              showGrid: true
           },
           low: 0,
-          high: 1000,
+          high: 50,
           chartPadding: { top: 0, right: 5, bottom: 0, left: 0}
       };
       var responsiveOptions: any[] = [

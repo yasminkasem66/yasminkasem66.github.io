@@ -29,9 +29,10 @@ const routes: Routes = [
             (m) => m.AdminLayoutModule
           ),
       },
+     
     ],
+   
   },
-
   { path: "**", component: NotfoundComponent },
 ];
 
