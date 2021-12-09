@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProductsService } from 'app/services/productsService/products.service';
 import * as Chartist from 'chartist';
 
 @Component({
@@ -7,8 +8,20 @@ import * as Chartist from 'chartist';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  constructor() { }
+  productList: any = {};
+  numofProducts:number=0;
+  constructor(private ProductsServiceApi: ProductsService) { 
+      this.ProductsServiceApi.getAllProducts().subscribe(
+      (productList) => {
+        this.productList = productList;
+        this.numofProducts=this.productList['products'].length;
+        console.log(this.productList);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
   startAnimationForLineChart(chart){
       let seq: any, delays: any, durations: any;
       seq = 0;

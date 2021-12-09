@@ -31,11 +31,11 @@ export class ProductsService {
       }),
     };
   }
-
+  
   // functions
   getAllProducts(): Observable<Iproduct> {
     return this.httpClient.get<Iproduct>(
-      environment.APIURL + "/products",
+      environment.APIURL + "/products/en",
       this.httpOptions
     );
   }
@@ -43,7 +43,7 @@ export class ProductsService {
   // FilterName
   FilterProducts(Type: any, search: any): Observable<Iproduct> {
     return this.httpClient.get<Iproduct>(
-      `${environment.APIURL}/products?${Type}=${search}`,
+      `${environment.APIURL}/products/en?${Type}=${search}`,
       this.httpOptions
     );
   }
@@ -59,7 +59,7 @@ export class ProductsService {
 
   getProductByID(prdID: string): Observable<Iproduct> {
     return this.httpClient.get<Iproduct>(
-      environment.APIURL + "/products/" + prdID,
+      environment.APIURL + "/products/" + prdID+"/en",
       this.httpOptions
     );
   }
