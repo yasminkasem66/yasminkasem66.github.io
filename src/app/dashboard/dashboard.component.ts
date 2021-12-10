@@ -162,7 +162,7 @@ export class DashboardComponent implements  AfterViewInit {
         /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
 
         var datawebsiteViewsChart = {
-          labels: ["Orders"],
+          labels: ["Users"],
           series: [[Number(this.usersCount)]],
         };
 
