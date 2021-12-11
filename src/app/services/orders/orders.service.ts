@@ -6,10 +6,9 @@ import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class OrdersService {
-
   private httpOptions = {};
   private httpOptions1 = {};
   TcknfrmLocalStorage = localStorage
@@ -39,6 +38,10 @@ export class OrdersService {
       this.httpOptions
     );
   }
-
-  
+  getSingleOrder(id:any): Observable<Iorder> {
+    return this.httpClient.get<Iorder>(
+      environment.APIURL + "/orders/"+id,
+      this.httpOptions
+    );
+  }
 }

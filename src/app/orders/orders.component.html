@@ -29,6 +29,9 @@
                                     <th>
                                         Total
                                     </th>
+                                    <th>
+                                       order Items
+                                    </th>
                                     
                                     
                                     
@@ -58,6 +61,73 @@
                                           <td class="text-dark">
                                             {{order?.total}}
                                         </td>
+                                                <td>
+                                                    <button type="button" class="btn  btn-warning  " data-bs-toggle="modal" data-bs-target="#staticBackdrop"
+                                                        (click)="getSingleOrder(order?._id)">
+                                                        Details
+                                                    </button>                          
+                                                    <!-- test modal -->
+                                                    <!-- Modal -->
+                                                    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                                                        aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                                        <div class="modal-dialog ">
+                                                
+                                                
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="staticBackdropLabel">Cart</h5>
+                                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                                </div>
+                                                <!-- modal-body -->
+                                                
+                                                                <div class="modal-body position-relative ">
+                                                                    <div class="HomePage-img  mb-5" *ngFor="let orderItem of  ordrItems; let i=index ">
+                                                                        <div class=" justify-content-center">
+                                                
+                                                                            <div ngModelChange class="itm HomePage-imgElement  card w-100 ">
+                                                                                <a href=""><img [src]="orderItem?.image" alt="..." class="w-100   "></a>
+                                                                                <div class="card-body">
+                                                
+                                                                                    <!-- name -->
+                                                                                    <span class="fs-6  fw-bold text-dark">Name :
+                                                                                    </span>
+                                                                                    <div class="name d-inline-block text-truncate" style="max-width: 100px;">
+                                                                                        {{orderItem?.name}}</div>
+                                                                                    <!-- price -->
+                                                
+                                                                                    <div>
+                                                                                        <span class="fs-6  fw-bold text-dark">Price
+                                                                                            :</span>
+                                                                                        {{orderItem?.price| currency:"USD"
+                                                                                        :'symbol'}}
+                                                
+                                                                                    </div>
+                                                                                    <!-- description -->
+                                                                                    <span class="fs-6  fw-bold text-dark">description
+                                                                                        : </span>
+                                                                                    <div class="description ">
+                                                                                        {{orderItem?.description}}
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                
+                                                
+                                                
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-default" data-bs-dismiss="modal">Close</button>
+                                                                    <button type="button" class="btn btn-primary">Check
+                                                                        Out</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- test modal -->
+                                                
+                                                </td>
 
                                     </tr>
 
