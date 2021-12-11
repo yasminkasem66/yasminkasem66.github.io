@@ -133,12 +133,12 @@ export class DashboardComponent implements OnInit {
       var datawebsiteViewsChart = {
         labels: ['Products', 'orders', 'users'],
         series: [
-          [Number(this.numofProducts), 30, 40]
+          [(this.numofProducts), 30, 40]
 
         ]
        
       };
-      console.log(Number(this.numofProducts), 'hkkkkkkkkkkkkkkkkk')
+      console.log((this.numofProducts), 'hkkkkkkkkkkkkkkkkk')
       var optionswebsiteViewsChart = {
           axisX: {
               showGrid: true
