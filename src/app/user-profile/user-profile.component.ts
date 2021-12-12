@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { TranslateService } from "@ngx-translate/core";
 import { Adminlogin } from "app/Models/login/adminlogin";
 import { User } from "app/Models/user/user";
 import { ProductsService } from "app/services/productsService/products.service";
@@ -25,7 +26,8 @@ export class UserProfileComponent implements OnInit {
   constructor(
     private userAPI: UserService,
     private ProductsServiceApi: ProductsService,
-    private router: Router 
+    private router: Router ,
+    public translate: TranslateService
   ) {
     console.log("IDfrmLocalStorage", this.IDfrmLocalStorage);
 

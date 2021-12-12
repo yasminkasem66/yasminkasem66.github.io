@@ -23,6 +23,7 @@ export class NavbarComponent implements OnInit {
   currentLang:string
 
   constructor(
+    
     location: Location,
     private element: ElementRef,
     private router: Router,
@@ -54,6 +55,7 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+  
 
   sidebarOpen() {
     const toggleButton = this.toggleButton;

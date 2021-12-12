@@ -17,10 +17,12 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { NotfoundComponent } from './notfound/notfound.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader'
+
 
 import {FileUploadModule} from 'ng2-file-upload';
-import {TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader'
+
 @NgModule({
   imports: [
     BrowserAnimationsModule,
