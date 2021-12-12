@@ -17,9 +17,11 @@ import { AddProductComponent } from 'app/add-product/add-product.component';
 import { EditproductComponent } from 'app/editproduct/editproduct.component';
 import { OrdersComponent } from 'app/orders/orders.component';
 import { UsersComponent } from 'app/users/users.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { FileUploadModule } from 'ng2-file-upload';
 import { NgxPaginationModule } from "ngx-pagination";
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 
@@ -39,6 +41,20 @@ import { NgxPaginationModule } from "ngx-pagination";
     MatTooltipModule,
     FileUploadModule,
     NgxPaginationModule,
+    TranslateModule.forChild({
+
+      defaultLanguage:'en',
+
+      loader:{
+
+        provide:TranslateLoader,
+
+        useFactory:createTranslateLoader,
+
+        deps:[HttpClient]
+      }
+
+    })
   ],
   declarations: [
     DashboardComponent,
@@ -52,3 +68,7 @@ import { NgxPaginationModule } from "ngx-pagination";
   ],
 })
 export class AdminLayoutModule {}
+export function createTranslateLoader(http:HttpClient){
+
+  return new TranslateHttpLoader(http,'./assets/i18n/','.json')
+}

@@ -1,0 +1,62 @@
+{
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "AddProducts":"Add Products",
+    "ProductNameEn":"Enter Your  Product  Name English",
+    "AddProduct":"Add Product",
+    "ProductsTable":"Products Table",
+    "ID":"ID",
+    "Name":"Name",
+    "price":"price",
+    "image":"image",
+    "category":"category",
+    "company":"company",
+    "Details":"Details",
+    "Edit":"Edit",
+    "Delete":"Delete",
+    "Dashboard":"Dashboard",
+    "Admin Profile":"Admin Profile",
+    "Products List":"Products List",
+    "Users":"Users",
+    "Maps":"Maps"
+    
+
+}
