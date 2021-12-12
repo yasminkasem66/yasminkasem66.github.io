@@ -5,6 +5,7 @@ import { Iproduct } from 'app/Models/product/iproduct';
 import { OrdersService } from 'app/services/orders/orders.service';
 import { environment } from 'environments/environment';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: "orders",
@@ -16,7 +17,7 @@ export class OrdersComponent {
   orderCount: number = null;
   ordrItems: [];
 
-  constructor(private orderService: OrdersService) {
+  constructor(private orderService: OrdersService , public translate:TranslateService) {
     this.orderService.getAllOrders().subscribe(
       (orderList) => {
         console.log(orderList);

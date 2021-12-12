@@ -10,6 +10,8 @@
             <span class="navbar-toggler-icon icon-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navigation">
+            <button (click)="changeCurrentLang('ar')" class="btn">Ar</button>
+                <button (click)="changeCurrentLang('en')" class="btn">En</button>
             <!-- <form class="navbar-form">
                 <div class="input-group no-border">
                     <input type="text" value="" class="form-control" placeholder="Search...">
@@ -56,6 +58,8 @@
                         </p>
                     </a>
                 </li> -->
+                
+
                 <div class="dropdown me-5">
                     <a class="dropdown-toggle text-dark" role="button" id="dropdownMenuLink"
                         data-bs-toggle="dropdown" aria-expanded="false">

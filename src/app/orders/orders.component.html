@@ -4,7 +4,7 @@
             <div class="col-md-12">
                 <div class="card">
                     <div class="card-header card-header-warning">
-                        <h4 class="card-title ">Order Table</h4>
+                        <h4 class="card-title ">{{"ORDERSTABLE" | translate}}</h4>
                         <!-- <p class="card-category"> Here is a subtitle for this table</p> -->
                     </div>
                     <div class="card-body">
@@ -12,25 +12,25 @@
                             <table class="table">
                                 <thead style="color:#000">
                                     <th>
-                                        ID
+                                        {{"ID" |translate}}
                                     </th>
                                     <th>
-                                        Shipping fee
+                                        {{"SHIPPINGFEE" | translate}}
                                     </th>
                                     <th>
-                                         Order Status
+                                         {{"ORDERSTATUS" | translate}}
                                     </th>
                                     <th>
-                                        sub Total
+                                        {{"SUBTOTAL" | translate}}
                                     </th>
                                     <th>
-                                        Tax
+                                        {{"TAX" | translate}}
                                     </th>
                                     <th>
-                                        Total
+                                        {{"TOTAL" | translate}}
                                     </th>
                                     <th>
-                                       order Items
+                                       {{"ORDERITEMS" | translate}}
                                     </th>
                                     
                                     
@@ -64,7 +64,7 @@
                                                 <td>
                                                     <button type="button" class="btn  btn-warning  " data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                                         (click)="getSingleOrder(order?._id)">
-                                                        Details
+                                                        {{"DETAILS" | translate}}
                                                     </button>                          
                                                     <!-- test modal -->
                                                     <!-- Modal -->
@@ -133,7 +133,7 @@
 
                                     <tr>
                                         <td class="fw-bold">
-                                            Total Orders
+                                            {{"TOTALORDERS" | translate}}
                                         </td>
                                         <td colspan="6">
                                             {{orderCount}}  

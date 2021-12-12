@@ -1,0 +1,37 @@
+{
+    "ORDERS":"الطلبات",
+    "USERSNUMBER":"عدد المستخدمين",
+    "PRODUCTNUMBER":"عدد المنتجات",
+    "LAST24HOURS":" اخر 24 ساعة",
+    "TRACKEDFROMGETHUB":"متتبع من جيت هب",
+    "NUMBEROFPRODUCTS":"عدد المنتجات",
+    "LASTCAMPAIGNPERFORMANCE":"اداء اخر حملة",
+    "NUMBEROFORDERS":"عدد الطلبات",
+    "NUMBEROFUSERS":"عدد المستخدمين",
+    "ACCESSTIME":"من يومان",
+    "EDITPROFILE":"تعديل الحساب الشخصي",
+    "COMPLETEYOURPROFILE":"استكمال التعديلات في الحساب الشخصي",
+    "NAME":"الاسم",
+    "UPDATEPROFILE":"تحديث الخساب",
+    "ADMINSTABLE":"قائمة المسؤولون",
+    "EMAIL":"الايميل",
+    "IMAGE":"الصورة",
+    "ROLE":"الدور",
+    "ID":"الكود",
+    "ORDERSTABLE":"قايمة الطلبات",
+    "SHIPPINGFEE":"رسوم النقل",
+    "ORDERSTATUS":"حالة الطلب",
+    "SUBTOTAL":"الاجمالي قبل الضريبة",
+    "TAX":"الضريبة",
+    "TOTAL":"الاجمالي",
+    "ORDERITEMS":"مكونات الطلب",
+    "DETAILS":"التفاصيل",
+    "TOTALORDERS":"اجمالي عدد الطلبات",
+    "USERSTABLE":"قائمة المستخدمين  "
+
+
+
+
+
+
+}

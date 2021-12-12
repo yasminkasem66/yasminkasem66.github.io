@@ -1,7 +1,7 @@
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
 import { AppRoutingModule } from "./app.routing";
 import { ComponentsModule } from "./components/components.module";
@@ -17,6 +17,9 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { NotfoundComponent } from './notfound/notfound.component';
+import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader'
+
 
 import {FileUploadModule} from 'ng2-file-upload';
 
@@ -41,10 +44,27 @@ import {FileUploadModule} from 'ng2-file-upload';
     MatRadioModule,
     MatCardModule,
     MatFormFieldModule,
-    FileUploadModule
+    FileUploadModule,
+    TranslateModule.forRoot({
+      defaultLanguage:'en',
+      loader:{
+        provide:TranslateLoader,
+        useFactory:createTranslateLoader,
+        deps:[HttpClient]
+
+      }
+    }
+     
+      
+    )
   ],
   declarations: [AppComponent, AdminLayoutComponent, LoginComponent, NotfoundComponent],
   providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+
+export function createTranslateLoader(http:HttpClient){
+  return new TranslateHttpLoader(http,'./assets/i18n/','.json') 
+
+}
