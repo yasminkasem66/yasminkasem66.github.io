@@ -31,7 +31,8 @@
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Name" #username="ngModel" type="text" [(ngModel)]=" user.name"
+                    <label>{{"Name" | translate}}</label>
+                    <input matInput  #username="ngModel" type="text" [(ngModel)]=" user.name"
                       name="Name">
                   </mat-form-field>
                   <div [hidden]='username.valid || username.untouched' class=" fw-bold text-danger">
@@ -42,8 +43,9 @@
               <!-- email -->
               <div class="row">
                 <div class="col-md-12">
+                  <label>{{"Email" | translate}}</label>
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Email" #useremail="ngModel" type="text" [(ngModel)]=" user.email"
+                    <input matInput  #useremail="ngModel" type="text" [(ngModel)]=" user.email"
                       name="email">
                   </mat-form-field>
                   <div [hidden]='useremail.valid || useremail.untouched' class=" fw-bold text-danger">
@@ -54,8 +56,10 @@
               <!-- password -->
               <div class="row">
                 <div class="col-md-12">
+                  
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="password" #userpassword="ngModel" type="password"
+                    <label>{{"password" | translate}}</label>
+                    <input matInput  #userpassword="ngModel" type="password"
                       [(ngModel)]=" user.password" name="password">
                   </mat-form-field>
                   <div [hidden]='userpassword.valid || userpassword.untouched' class=" fw-bold text-danger">
@@ -109,11 +113,11 @@
           <div class="card-body">
             <h6 class="card-category text-gray">{{admindata.role}}</h6>
             <h4 class="card-title">{{admindata.name}}</h4>
-            <p class="card-description">
+            <!-- <p class="card-description">
               Don't be scared of the truth because we need to restart the human foundation in truth And I love you like
               Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-            </p>
-            <a href="javascript:void(0)" class="btn btn-warning btn-round">Follow</a>
+            </p> -->
+            <!-- <a href="javascript:void(0)" class="btn btn-warning btn-round">Follow</a> -->
           </div>
         </div>
       </div>
@@ -185,7 +189,7 @@
 
 
 <button type="button" class="btn  btn-warning m-5  " data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Add Admin
+ {{"AddAdmin" |translate}}
 </button>
 <!-- <button mat-button color="accent">Accent</button>
                                                                                         <i class="large material-icons">ac_unit</i> -->
