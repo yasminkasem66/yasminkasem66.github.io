@@ -54,7 +54,7 @@ export class DashboardComponent implements  AfterViewInit {
         this.productList = productList;
         this.numofProducts = this.productList["products"].length;
         console.log("this.numofProducts", this.numofProducts);
-        /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+        /* ----------==========     Products Subscription Chart initialization    ==========---------- */
 
         var datawebsiteViewsChart = {
           labels: ["Products"],
@@ -107,8 +107,9 @@ export class DashboardComponent implements  AfterViewInit {
         console.log(orderList);
         this.orderList = orderList;
         this.orderCount = orderList.count;
-
-        /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+        
+        console.log("orderListorderListorderList", orderList);
+        /* ----------==========     Order Subscription Chart initialization    ==========---------- */
 
         var datawebsiteViewsChart = {
           labels: ["Orders"],
@@ -156,10 +157,10 @@ export class DashboardComponent implements  AfterViewInit {
     //// ///////////////////////////////3
     this.userAPI.getAllUsers().subscribe(
       (res) => {
-        console.log(res.nbHits);
+        console.log( "userAPI", res);
         this.usersCount = res.nbHits;
 
-        /* ----------==========     Emails Subscription Chart initialization    ==========---------- */
+        /* ----------==========     Users Subscription Chart initialization    ==========---------- */
 
         var datawebsiteViewsChart = {
           labels: ["Users"],
