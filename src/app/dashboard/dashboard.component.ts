@@ -1,4 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { OrdersService } from 'app/services/orders/orders.service';
 import { ProductsService } from 'app/services/productsService/products.service';
 import { UserService } from 'app/services/user/user.service';
@@ -46,7 +47,9 @@ export class DashboardComponent implements  AfterViewInit {
   constructor(
     private ProductsServiceApi: ProductsService,
     private orderService: OrdersService,
-    private userAPI: UserService
+    private userAPI: UserService,
+    public translate:TranslateService
+
   ) {
     // ///////////////////////////////1
     this.ProductsServiceApi.getAllProducts().subscribe(
@@ -247,7 +250,6 @@ export class DashboardComponent implements  AfterViewInit {
 
   //     seq = 0;
   // };
-
 
 
 

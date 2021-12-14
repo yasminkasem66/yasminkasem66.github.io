@@ -4,6 +4,7 @@ import { HttpClient, HttpErrorResponse, HttpEvent, HttpEventType } from "@angula
 import { saveAs } from "file-saver";
 import { ProductsService } from 'app/services/productsService/products.service';
 import { UserService } from 'app/services/user/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -19,7 +20,7 @@ export class UsersComponent {
   UsersList: any = {};
 
   // constructor
-  constructor(private userAPI: UserService) {}
+  constructor(private userAPI: UserService ,  public translate: TranslateService ) {}
 
   ngOnInit() {
     this.userAPI.getAllUsers().subscribe(

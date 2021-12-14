@@ -1,5 +1,6 @@
 import { Component} from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -8,5 +9,9 @@ import { Router } from '@angular/router';
   styleUrls: ["./app.component.css"],
 })
 export class AppComponent {
-  constructor(public router: Router) {}
+  currentLang:string
+  constructor(public router: Router , public translate:TranslateService) {
+   
+  }
+  
 }

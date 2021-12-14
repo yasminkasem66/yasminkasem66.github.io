@@ -10,6 +10,7 @@ import { map } from "rxjs/operators";
 //
 import { FileSelectDirective, FileUploader} from 'ng2-file-upload';
 import {saveAs} from 'file-saver';
+import { TranslateService } from "@ngx-translate/core";
 // import { FormBuilder, FormGroup } from "@angular/forms";
 
 
@@ -46,10 +47,11 @@ export class AddProductComponent implements OnInit {
   constructor(
     private ProductsServiceApi: ProductsService,
     private router: Router,
-    private httpClient: HttpClient
+    private httpClient: HttpClient,
+    public translate:TranslateService
   ) {
     //test
-    this.uploader.onCompleteItem = (
+     this.uploader.onCompleteItem = (
       item: any,
       response: any,
       status: any,

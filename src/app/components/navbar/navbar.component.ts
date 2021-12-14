@@ -7,6 +7,7 @@ import {
 } from "@angular/common";
 import { Router } from "@angular/router";
 import { AuthenticationService } from "app/services/authentacation/authentication.service";
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: "app-navbar",
@@ -19,18 +20,29 @@ export class NavbarComponent implements OnInit {
   mobile_menu_visible: any = 0;
   private toggleButton: any;
   private sidebarVisible: boolean;
+  currentLang:string
 
   constructor(
+    
     location: Location,
     private element: ElementRef,
     private router: Router,
-    private authentacation: AuthenticationService
+    private authentacation: AuthenticationService,
+    public translate:TranslateService
   ) {
+    this.currentLang=localStorage.getItem('currentLang')|| 'en';
+    this.translate.use(this.currentLang)
     this.location = location;
     this.sidebarVisible = false;
   }
-
-  ngOnInit() {
+  
+  changeCurrentLang(lang:string){
+    this.translate.use(lang);
+    localStorage.setItem('currentLang',lang)}
+  
+  
+  
+    ngOnInit() {
     this.listTitles = ROUTES.filter((listTitle) => listTitle);
     const navbar: HTMLElement = this.element.nativeElement;
     this.toggleButton = navbar.getElementsByClassName("navbar-toggler")[0];
@@ -43,6 +55,7 @@ export class NavbarComponent implements OnInit {
       }
     });
   }
+  
 
   sidebarOpen() {
     const toggleButton = this.toggleButton;
