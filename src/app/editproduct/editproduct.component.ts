@@ -16,6 +16,9 @@ export class EditproductComponent implements OnInit, OnChanges {
       allprd:any={};
         allCategory:any[]=[];
   allCompany:any[]=[];
+// in=mage vars
+  public selectedFile: any;
+  img: any = null;
 
 
   constructor(
@@ -88,15 +91,35 @@ export class EditproductComponent implements OnInit, OnChanges {
       nameAr:this.prd2.nameAr,
       price: this.prd2.price,
       descriptionEn:this.prd2.description,
+      image: "",
       categoryparent: this.prd2.categoryparent,
       category:this.prd2.category,
       company:this.prd2.company
     }
   }
 
+
+  uploadfile(event) {
+    this.selectedFile = event.target.files[0];
+    let formData: FormData = new FormData();
+    formData.append("image", this.selectedFile, this.selectedFile.name);
+    return this.ProductsServiceApi.upload(formData).subscribe(
+      (res) => {
+        console.log(res);
+        this.img = res.image;
+        console.log("this.img,", this.img);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
+  }
+
+
   EditProduct(EditProduct: string, prd: Iproduct) {
     console.log(" EditProduct", EditProduct);
-
+    this.prd.image = this.img;
+    console.log("  this.prd.image", this.prd.image);
     this.ProductsServiceApi.EditProduct(EditProduct, prd).subscribe(
       (res) => {
         // return this.router.navigateByUrl('/Admin/newproduct');
@@ -111,4 +134,9 @@ export class EditproductComponent implements OnInit, OnChanges {
       }
     );
   }
+
+
+
+
+
 }
