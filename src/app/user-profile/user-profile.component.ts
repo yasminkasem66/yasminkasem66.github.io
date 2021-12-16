@@ -85,6 +85,7 @@ export class UserProfileComponent implements OnInit {
 
   UpdateUser() {
     this.user.image = this.img;
+    this.user.role = 'admin';
     this.userAPI.UpdateUser(this.user).subscribe(
       (res) => {
         console.log("UpdateUser", res);
